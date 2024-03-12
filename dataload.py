@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-from preporcessing import category
+from preporcessing import category , get_category_list
 from dotenv import load_dotenv
 import os
 load_dotenv('env/key.env')
@@ -25,8 +25,10 @@ def main_load():
     df['kg당 평균 가격'] = (df['AVGPRICE'] / df['UNITQTY']).astype('int')# kg당 평균 가격 구하기
     df['category'] = df['PUMNAME'].apply(category) # category 칼럼 만들기
     df.reset_index(drop=True, inplace=True)
-    return df 
-
+    etc_lst = get_category_list(df)
+    return df , etc_lst  
+    
 if __name__ == "__main__":
     main_load()
+    
 

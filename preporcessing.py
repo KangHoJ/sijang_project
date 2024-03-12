@@ -22,3 +22,14 @@ def category(item):
     if keyword in item:
       return "과일"
   return "기타"
+
+
+def get_category_list(df):
+    etc_lst_day = []
+    for i in range(len(df)):
+        if df['category'].iloc[i] == '기타':
+            etc_lst_day.append(df['PUMNAME'].iloc[i])
+
+    return etc_lst_day
+
+

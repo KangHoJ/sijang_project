@@ -3,9 +3,11 @@ from sqlalchemy import create_engine
 from dataload import main_load
 from env import settings
 
-df = main_load()
+df , etc_lst = main_load()
 
 def db_import():
+    print('데이터 : ',df)
+    print('분류 안된 정보 : ',etc_lst)
     host = settings.DATABASE_CONFIG['host']
     port = settings.DATABASE_CONFIG['port']
     user = settings.DATABASE_CONFIG['user']
