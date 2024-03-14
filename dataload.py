@@ -22,7 +22,7 @@ def main_load():
         df = pd.concat([df, data])
 
     df = df[~((df['MAXPRICE']==0) & (df['MAXPRICE']==0) & (df['MAXPRICE']==0))] # 최고가 0인것들 제외(이상치)
-    df['kg당 평균 가격'] = (df['AVGPRICE'] / df['UNITQTY']).astype('int')# kg당 평균 가격 구하기
+    df['단위당 평균 가격'] = (df['AVGPRICE'] / df['UNITQTY']).astype('int')# kg당 평균 가격 구하기
     df['category'] = df['PUMNAME'].apply(category) # category 칼럼 만들기
     df.reset_index(drop=True, inplace=True)
     etc_lst = get_category_list(df)

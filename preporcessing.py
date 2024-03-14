@@ -29,3 +29,14 @@ def get_category_list(df):
     return lst
 
 
+
+# 성능 평가를 위해 y_test제작 (연습용)
+def y_test_fun(item):
+    fru_list = ["키위"]
+    ve_list = ['머위잎','파슬리']
+    for keyword in ve_list:
+        if keyword in item:
+            return "야채"
+    for keyword in fru_list:
+        if keyword in item:
+            return "과일"

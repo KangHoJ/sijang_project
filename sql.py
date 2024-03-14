@@ -2,12 +2,15 @@ import pymysql
 from sqlalchemy import create_engine
 from dataload import main_load
 from env import settings
+from model import model_process
 
-df , etc_lst = main_load()
+api_df , etc_lst = main_load()
+final_df = model_process()
 
 def db_import():
-    print('데이터 : ',df)
+    print('데이터 : ',api_df)
     print('분류 안된 정보 : ',etc_lst)
+    print('최종 데이터 :',final_df)
     host = settings.DATABASE_CONFIG['host']
     port = settings.DATABASE_CONFIG['port']
     user = settings.DATABASE_CONFIG['user']
@@ -17,9 +20,9 @@ def db_import():
     engine = create_engine(f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}')
     conn = engine.connect()
     print('연결 성공')
-    df.to_sql(name='sijang3', con=conn, if_exists='replace', index=False) # 새로운 db 데이터 
+    final_df.to_sql(name='new_sijang_data', con=conn, if_exists='replace', index=False) # 새로운 db 데이터 
     print("새로운 db 데이터 넣기 성공.")
-    df.to_sql(name='sijang4', con=conn, if_exists='append', index=False) # Append new data
+    final_df.to_sql(name='acc_sijang_data', con=conn, if_exists='append', index=False) # Append new data
     print("새로운 데이터 넣기 성공.")
     
 
