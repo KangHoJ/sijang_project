@@ -28,6 +28,7 @@ def main_load():
     etc_lst = get_category_list(df)
     return df , etc_lst  
     
+
 if __name__ == "__main__":
     main_load()
     

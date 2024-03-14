@@ -25,11 +25,7 @@ def category(item):
 
 
 def get_category_list(df):
-    etc_lst_day = []
-    for i in range(len(df)):
-        if df['category'].iloc[i] == '기타':
-            etc_lst_day.append(df['PUMNAME'].iloc[i])
-
-    return etc_lst_day
+    lst = list(df[df['category']=='기타']['PUMNAME'].values)
+    return lst
 
 
