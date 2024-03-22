@@ -54,8 +54,8 @@ def model_process():
         # print('확률',te_prob)
         tr_pred = model.predict(x_train_encoded) 
         te_pred = model.predict(test_encoded) 
-        accuracy_tr = accuracy_score(y_train, tr_pred) # 학습한건 잘 맞춘다 
-        accuracy_te = accuracy_score(y_test, te_pred)
+        # accuracy_tr = accuracy_score(y_train, tr_pred) # 학습한건 잘 맞춘다 
+        # accuracy_te = accuracy_score(y_test, te_pred)
         
         # print(f"< {model}의 train 정확도 > : ", accuracy_tr)
         # print(f"< {model}의 test 정확도 > : ", accuracy_te)
@@ -67,15 +67,16 @@ def model_process():
         # print('-----------------------'*10)
 
     final = pd.concat([train_final, test_final], axis=0) 
-    most_common_category = final.groupby('PUMNAME')['category'].agg(lambda x: x.mode().iloc[0]) # 가장 많이 나오는거
+    print('최빈값 적용전 final',final)
+    # most_common_category = final.groupby('PUMNAME')['category'].agg(lambda x: x.mode().iloc[0]) # 가장 많이 나오는거
     # print(most_common_category[most_common_category.index=='머위잎'])
-    final['분류'] = final['PUMNAME'].map(most_common_category)
+    # final['분류'] = final['PUMNAME'].map(most_common_category)
     # print(final.tail(10))
 
     return final
 
 df = model_process()
-print(df)
+# print(df)
 # if __name__ == "__main__":
 #     model_process() # db로 넣기
     
