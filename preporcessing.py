@@ -4,7 +4,7 @@ def category(item):
              ,'꼬막','다시마','꽁치','꼴뚜기','대합']
 
   ve_list = ["가지", "감자", "양파", "배추", "무", "당근", "토마토", "오이", "버섯", "고추", "피망", "깻잎", "시금치", "열무", 
-             "콜리플라워", "브로콜리", "아스파라거스",
+             "콜리플라워", "브로콜리", "아스파라거스",'중하'
               "양배추", "샐러리", "케일", "깻잎", "깻잎순", "쑥갓" ,'고구마','고수','로메인','호박','미나리','콜라비','미더덕',
               '아귀','칼리',"김", '연근','오디','중하'
               "깐마늘", "냉이", "노랑 파프리카", "당귀잎", "대파", "동죽", "레드 치커리","생표고", "나물" , '파','청초','참두릅',
@@ -35,16 +35,25 @@ def get_category_list(df):
     return lst
 
 
+def good_lower_day(df):
+  top_index = df.groupby('category_name')['value'].nlargest(5).index.values
+  number_list = []
+  for category_name, value in top_index:
+      number_list.append(int(value))
+  category_cheaper_data = df.loc[number_list]
+  return category_cheaper_data
 
-# 성능 평가를 위해 y_test제작 (연습용)
-def y_test_fun(item):
-    fru_list = ["키위"]
-    ve_list = ['머위잎','파슬리']
-    for keyword in ve_list:
-        if keyword in item:
-            return "야채"
-    for keyword in fru_list:
-        if keyword in item:
-            return "과일"
+
+
+# # 성능 평가를 위해 y_test제작 (연습용)
+# def y_test_fun(item):
+#     fru_list = ["키위"]
+#     ve_list = ['머위잎','파슬리']
+#     for keyword in ve_list:
+#         if keyword in item:
+#             return "야채"
+#     for keyword in fru_list:
+#         if keyword in item:
+#             return "과일"
           
           

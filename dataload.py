@@ -52,7 +52,11 @@ def Data_load2():
     basic_data = pd.DataFrame(basic_data)
     country_data = pd.DataFrame(country_data)
     country_data['value'] = pd.to_numeric(country_data['value'])
-    country_data.drop(['county_code','product_cls_code','category_code','productName'],axis=1,inplace=True)
+    country_data['dpr1'] = country_data['dpr1'].str.replace(',', '.')
+    country_data['dpr2'] = country_data['dpr2'].str.replace(',', '.')
+    country_data['dpr1'] = pd.to_numeric(country_data['dpr1']) # 숫자로 변환
+    country_data['dpr2'] = pd.to_numeric(country_data['dpr2']) # 숫자료 변환
+    country_data.drop(['county_code','product_cls_code','category_code','productName'],axis=1,inplace=True) # 필요없는 열 제거 
     return basic_data , country_data
 
 

@@ -69,6 +69,14 @@ for category_name, value in top_index:
 category_cheaper_data = country_data.loc[number_list]
 print(category_cheaper_data)
 
+fruit = category_cheaper_data[category_cheaper_data['category_name']=='과일류']
+su = category_cheaper_data[category_cheaper_data['category_name']=='수산물']
+sik = category_cheaper_data[category_cheaper_data['category_name']=='식량작물']
+food = category_cheaper_data[category_cheaper_data['category_name']=='식품']
+vegetable = category_cheaper_data[category_cheaper_data['category_name']=='채소류']
+livestock  = category_cheaper_data[category_cheaper_data['category_name']=='축산물']
+special = category_cheaper_data[category_cheaper_data['category_name']=='특용작물']
+
 # category_name = st.selectbox('카테고리 선택', category_cheaper_data['category_name'])
 # selected_data = category_cheaper_data[category_cheaper_data['category_name'] == category_name]
 # fig = px.bar(selected_data, x="item_name", y="value")
